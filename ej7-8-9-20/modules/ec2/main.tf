@@ -8,6 +8,5 @@ resource "aws_instance" "web" {
 
   tags = {
     Name         = "mikroways-web"
-    Organization = "Mikroways"
   }
 }

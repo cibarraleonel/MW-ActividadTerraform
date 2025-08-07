@@ -19,6 +19,12 @@ module "ec2" {
 
 provider "aws" {
   region = "us-east-1"
+
+  default_tags {
+    tags = {
+      Organization = "Mikroways"
+    }
+  }
 }
 
 data "aws_ami" "amazon_linux_3" {

@@ -1,7 +1,6 @@
 resource "aws_key_pair" "this" {
   key_name   = var.key_name
   public_key = file(var.public_key_path)
-  tags = { Organization = "Mikroways" }
 }
 
 resource "aws_vpc" "this" {
@@ -10,7 +9,6 @@ resource "aws_vpc" "this" {
   enable_dns_hostnames = true
   tags = {
     Name         = "mikroways-vpc"
-    Organization = "Mikroways"
   }
 }
 
@@ -18,7 +16,6 @@ resource "aws_internet_gateway" "this" {
   vpc_id = aws_vpc.this.id
   tags = {
     Name         = "mikroways-igw"
-    Organization = "Mikroways"
   }
 }
 
@@ -29,7 +26,6 @@ resource "aws_subnet" "public_a" {
   map_public_ip_on_launch = true
   tags = {
     Name         = "mikroways-public-a"
-    Organization = "Mikroways"
   }
 }
 
@@ -40,7 +36,6 @@ resource "aws_subnet" "public_b" {
   map_public_ip_on_launch = true
   tags = {
     Name         = "mikroways-public-b"
-    Organization = "Mikroways"
   }
 }
 
@@ -52,7 +47,6 @@ resource "aws_route_table" "public" {
   }
   tags = {
     Name         = "mikroways-public-rt"
-    Organization = "Mikroways"
   }
 }
 
@@ -70,7 +64,6 @@ resource "aws_security_group" "web_sg" {
   name        = "mikroways-sg"
   description = "Allow SSH and HTTP"
   vpc_id      = aws_vpc.this.id
-  tags = { Organization = "Mikroways" }
 }
 
 resource "aws_vpc_security_group_ingress_rule" "ssh" {
